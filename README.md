@@ -63,9 +63,9 @@ hostnames and drop `lan`/`tentative` once confirmed.
 | Copper Wire & Starlight | .67:3025 | https://copper.waterburp.com | 57 |
 | Callbook OCR Outpost | .67:3028 | https://ocr.waterburp.com | 62 |
 | ARRL Band Chart | .67:3034 | https://bands.waterburp.com | 67 |
-| Net Assistant | .67:3045 | hostname unknown — LAN | 46/49 |
+| Net Assistant | .67:3045 | https://net-assistant.com | 46/49 |
 | Callbook | .67:3017 | hostname unknown — LAN | 52 |
-| License Courses (one proxy) | .67:3032 | hostname unknown — LAN | 65 |
+| License Courses (one proxy) | .67:3032 | https://hambook.waterburp.com | 65 |
 | Callbook OCR Worker | .4:3028 | LAN | 61 |
 | 200 Meters & Down | .61:8080 (verify) | LAN | 26 |
 

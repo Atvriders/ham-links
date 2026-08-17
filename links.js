@@ -17,11 +17,11 @@ const LINKS = [
   { name: "Copper Wire & Starlight", tagline: "Ham novel for young builders", url: "https://copper.waterburp.com", port: 3025, tunnel: 57 },
   { name: "Callbook OCR Outpost", tagline: "OCR pipeline coordinator", url: "https://ocr.waterburp.com", port: 3028, tunnel: 62 },
   { name: "ARRL Band Chart",   tagline: "Interactive 3D bands chart", url: "https://bands.waterburp.com", port: 3034, tunnel: 67 },
+  { name: "Net Assistant",     tagline: "Club repeater & net assistant", url: "https://net-assistant.com", port: 3045, tunnel: 46, note: "login" },
+  { name: "License Courses",   tagline: "Tech / General / Extra books (one proxy)", url: "https://hambook.waterburp.com", port: 3032, tunnel: 65 },
 
-  // --- confirmed on the LAN, public hostname still unknown -------------------
-  { name: "Net Assistant",     tagline: "Club repeater & net assistant", url: "http://192.168.1.67:3045", port: 3045, tunnel: 46, note: "login", lan: true },
+  // --- still on LAN URLs (public hostname unknown) ---------------------------
   { name: "Callbook",          tagline: "USA callbook archive 1909–present", url: "http://192.168.1.67:3017", port: 3017, tunnel: 52, lan: true },
-  { name: "License Courses",   tagline: "Tech / General / Extra books (one proxy)", url: "http://192.168.1.67:3032", port: 3032, tunnel: 65, lan: true },
   { name: "Callbook OCR Worker", tagline: "OCR pipeline worker (.4)", url: "http://192.168.1.4:3028", port: 3028, tunnel: 61, lan: true },
   { name: "200 Meters & Down", tagline: "Technical history of ham radio", url: "http://192.168.1.61:8080", port: 8080, tunnel: 26, tentative: true, lan: true, note: ".61 — verify" },
 ];
