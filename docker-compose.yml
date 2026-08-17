@@ -14,9 +14,15 @@
 
 services:
   ham-links:
-    image: git.waterburp.com/atvriders/ham-links:latest
+    # CI builds this image: Gitea Actions → git.waterburp.com/atvriders
+    # (default below) and GitHub Actions → ghcr.io/atvriders/ham-links.
+    # `build` remains so `docker compose build` works locally; set REGISTRY
+    # in a .env to pull from GitHub GHCR instead:
+    #   REGISTRY=ghcr.io/atvriders
+    image: ${REGISTRY:-git.waterburp.com/atvriders}/ham-links:${TAG:-latest}
     # To build from source instead, comment the line above and uncomment:
     # build: .
+    build: .
     pull_policy: always
     restart: unless-stopped
     ports:

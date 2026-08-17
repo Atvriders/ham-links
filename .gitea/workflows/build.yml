@@ -1,0 +1,29 @@
+# Gitea Actions build — publishes the ham-links image to the Gitea registry.
+# Requires Gitea Actions enabled on the instance; GITEA_TOKEN is auto-provided.
+name: build-image
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Login to Gitea registry
+        run: |
+          echo "${{ secrets.GITEA_TOKEN }}" | docker login git.waterburp.com \
+            -u "${{ vars.GITEA_USERNAME || 'Atvriders' }}" --password-stdin
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            git.waterburp.com/atvriders/ham-links:latest
+            git.waterburp.com/atvriders/ham-links:${{ github.sha }}

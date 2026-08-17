@@ -11,15 +11,35 @@ This is the "links rather than containers" companion to
 ## Usage
 
 ```bash
-# 1. Publish the image to your Gitea registry (once)
-docker build -t git.waterburp.com/atvriders/ham-links:latest .
-docker push git.waterburp.com/atvriders/ham-links:latest
-
-# 2. Run on the host that serves your tunnels
-docker compose up -d
+docker compose up -d     # pulls git.waterburp.com/atvriders/ham-links:latest
 ```
 
 Open `http://<host>:8086`.
+
+## CI builds
+
+Two pipelines publish the image on every push to `main`:
+
+- **Gitea Actions** (`.gitea/workflows/build.yml`) — builds and pushes to the
+  Gitea registry (`git.waterburp.com/atvriders/ham-links`, the compose default).
+  Gitea auto-provides `GITEA_TOKEN`; the instance just needs Actions enabled.
+- **GitHub Actions** (`.github/workflows/build.yml`) — builds and pushes to
+  GitHub GHCR (`ghcr.io/atvriders/ham-links`). Add a `GITEA_TOKEN` repo secret
+  to also cross-push to Gitea from GitHub.
+
+Pull from the other registry via `.env`:
+
+```bash
+REGISTRY=ghcr.io/atvriders             # GitHub GHCR
+REGISTRY=git.waterburp.com/atvriders   # default (Gitea)
+```
+
+Manual fallback (only needed without CI):
+
+```bash
+docker build -t git.waterburp.com/atvriders/ham-links:latest .
+docker push git.waterburp.com/atvriders/ham-links:latest
+```
 
 ## Editing the links
 
