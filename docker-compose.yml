@@ -1,0 +1,28 @@
+# ham-links — a links-only page for the ham services behind your Cloudflare
+# tunnels. ONE container (this nginx page). The services themselves are NOT
+# containerized here — they live on 192.168.1.x machines and are linked by URL.
+#
+# The image is pulled from the Gitea registry (like arrl-calendar). To publish
+# it there first:
+#
+#   docker build -t git.waterburp.com/atvriders/ham-links:latest .
+#   docker push git.waterburp.com/atvriders/ham-links:latest
+#
+# Then on the host that serves the tunnels:
+#
+#   docker compose up -d        → http://<host>:8086
+
+services:
+  ham-links:
+    image: git.waterburp.com/atvriders/ham-links:latest
+    # To build from source instead, comment the line above and uncomment:
+    # build: .
+    pull_policy: always
+    restart: unless-stopped
+    ports:
+      - "8086:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
