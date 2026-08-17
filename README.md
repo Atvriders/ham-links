@@ -44,30 +44,31 @@ docker push git.waterburp.com/atvriders/ham-links:latest
 ## Editing the links
 
 Everything lives in `links.js` — rename tiles, fix URLs, add or remove
-services. The `tentative: true` entries are ports I couldn't positively
-identify (license courses and a few unknowns in the 30xx cluster); rename
-them once you confirm what each port serves.
+services. Tiles with `lan: true` still use LAN addresses because their public
+hostname wasn't found; `tentative: true` needs verification. Add the missing
+hostnames and drop `lan`/`tentative` once confirmed.
 
-If you prefer tiles that point at your **public Cloudflare URLs** instead of
-LAN addresses, replace each `url` value — the tile page is fully data-driven.
+## Verified map (docker ps on 192.168.1.67 + DNS)
 
-## Port map used (tunnel list → service)
+| Service | Host | Public URL | Tunnel |
+|---|---|---|---|
+| HamClock Reborn | .67:3012 | https://hamclock-reborn.org | 37 |
+| RadioRumble | .67:7373 | https://radiorumble.waterburp.com | 38 |
+| Ham Radio Clicker | .67:3011 | https://clicker.hamclock-reborn.org | 39 |
+| ARRL Calendar | .67:3014 | https://calendar.waterburp.com | 41/51 |
+| GrantSpotter | .67:3030 | https://grant.waterburp.com | 42/64 |
+| Elmer | .67:3023 | https://elmer.waterburp.com | 58 |
+| Hamdoor | .67:3033 | https://hamdoor.waterburp.com | 66 |
+| Mia's Storybook | .67:3024 | https://mia.waterburp.com | 56 |
+| Copper Wire & Starlight | .67:3025 | https://copper.waterburp.com | 57 |
+| Callbook OCR Outpost | .67:3028 | https://ocr.waterburp.com | 62 |
+| ARRL Band Chart | .67:3034 | https://bands.waterburp.com | 67 |
+| Net Assistant | .67:3045 | hostname unknown — LAN | 46/49 |
+| Callbook | .67:3017 | hostname unknown — LAN | 52 |
+| License Courses (one proxy) | .67:3032 | hostname unknown — LAN | 65 |
+| Callbook OCR Worker | .4:3028 | LAN | 61 |
+| 200 Meters & Down | .61:8080 (verify) | LAN | 26 |
 
-| Tunnel | Target | Service |
-|---|---|---|
-| 37 | .67:3012 | HamClock Reborn |
-| 38 | .67:7373 | RadioRumble |
-| 39 | .67:3011 | Ham Radio Clicker |
-| 41/51 | .67:3014 | ARRL Calendar |
-| 42/64 | .67:3030 | GrantSpotter |
-| 46/49 | .67:3045 | Ham Net Assistant |
-| 52 | .67:3017 | Callbook |
-| 53 | .67:8080 | 200 Meters & Down |
-| 56 | .67:3024 | Ham Radio Storybook |
-| 57 | .67:3025 | Copper Wire & Starlight |
-| 58 | .67:3023 | Elmer |
-| 61 | .4:3028 | Callbook OCR worker |
-| 62 | .67:3028 | Callbook OCR coordinator |
-| 66 | .67:3033 | Hamdoor |
-| 59/60/63 | .67:3026/3027/3031 | License courses (tentative) |
-| 65/67/68 | .67:3032/3034/3035 | Unidentified ham-suspect ports (tentative) |
+Corrections from the live box: `.67:3026/3027/3031/3035/8080` are perihelion,
+fractalarium, postbox, huddlespark and the Discord music bot — not ham, so
+they are not listed.

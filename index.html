@@ -148,6 +148,12 @@
         bT.textContent = "tentative";
         badges.appendChild(bT);
       }
+      if (l.lan) {
+        const bL = document.createElement("span");
+        bL.className = "badge";
+        bL.textContent = "lan";
+        badges.appendChild(bL);
+      }
 
       const url = document.createElement("div");
       url.className = "url";
